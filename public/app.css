@@ -1,6 +1,7 @@
 html {
   font-family: system-ui;
   font-size: 2rem;
+  overflow: hidden;
 }
 
 body {
