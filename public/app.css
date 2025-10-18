@@ -5,14 +5,19 @@ body {
 }
 
 #content {
-  margin-bottom: auto;
-  width: 100vw;
+  width: 100%;
 }
 
 #controls {
-  margin-top: auto;
-  justify-content: space-around;
-  width: 100vw;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+.nav-button {
+  flex: 1;
 }
 
 .card {
