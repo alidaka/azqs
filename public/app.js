@@ -35,22 +35,27 @@ Azqs.vc = function(controls, outputNode) {
 
   // TODO: sample data
   this.doseCheckins = [{
-    scheduled: new Date(2025, 10, 13, 7, 45),
+    scheduled: new Date(2025, 9, 13, 7, 45),
     med: "MPH",
     dose: "5mg",
-    checkin: new Date(2025, 10, 13, 7, 38),
+    checkin: new Date(2025, 9, 13, 7, 38),
   }, {
-    scheduled: new Date(2025, 10, 14, 7, 45),
+    scheduled: new Date(2025, 9, 14, 7, 45),
     med: "MPH",
     dose: "5mg",
-    checkin: new Date(2025, 10, 14, 8),
+    checkin: new Date(2025, 9, 14, 8),
   }, {
-    scheduled: new Date(2025, 10, 15, 7, 45),
+    scheduled: new Date(2025, 9, 15, 7, 45),
     med: "MPH",
     dose: "5mg",
     checkin: null,
   }, {
-    scheduled: new Date(2025, 10, 16, 7, 45),
+    scheduled: new Date(2025, 9, 15, 7, 45),
+    med: "MPH",
+    dose: "5mg",
+    checkin: null,
+  }, {
+    scheduled: new Date(2026, 9, 16, 7, 45),
     med: "MPH",
     dose: "5mg",
     checkin: null,
@@ -96,19 +101,43 @@ Azqs.vc.prototype.showCheckins = function(event) {
   // show past many, current, next few
 
   // create content
-  var content = document.createElement("ul");
-  this.doseCheckins.forEach(function(checkin) {
-    var node = document.createElement("li");
-    // TODO: need to pull in a date helper
-    var result = checkin.checkin ?
-      `happened at ${checkin.checkin}` :
-      `did not happen`;
-    node.innerText = `${checkin.scheduled}: ${checkin.dose} ${checkin.med} ${result}`;
-
-    content.appendChild(node);
+  var content = document.createElement("div");
+  var cards = this.doseCheckins.map(Azqs.vc.checkinToCard);
+  cards.forEach(function(card) {
+    content.appendChild(card);
   });
 
   this.updateView(content);
 
   return false;
 };
+
+Azqs.vc.checkinToCard = function(checkin) {
+  var now = new Date();
+
+  var card = document.createElement("div");
+  card.classList.add("card");
+
+  if (checkin.checkin) {
+    card.classList.add("checkin-occurred");
+  } else if (checkin.scheduled > now) {
+    card.classList.add("checkin-pending");
+  } else {
+    card.classList.add("checkin-missed");
+  }
+
+  // TODO: pull in a date library
+  var temp = document.createElement("span");
+  temp.innerText = `${checkin.scheduled}`;
+  card.appendChild(temp);
+
+  temp = document.createElement("span");
+  temp.innerText = `happened at ${checkin.checkin}`;
+  card.appendChild(temp);
+
+  temp = document.createElement("span");
+  temp.innerText = `${checkin.dose} ${checkin.med}`;
+  card.appendChild(temp);
+
+  return card;
+}

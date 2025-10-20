@@ -29,3 +29,15 @@ body {
 
 .card {
 }
+
+.checkin-missed {
+  background-color: orange;
+}
+
+.checkin-occurred {
+  background-color: blue;
+}
+
+.checkin-pending {
+  background-color: grey;
+}
