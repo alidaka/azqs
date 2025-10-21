@@ -127,17 +127,40 @@ Azqs.vc.checkinToCard = function(checkin) {
   }
 
   // TODO: pull in a date library
-  var temp = document.createElement("span");
-  temp.innerText = `${checkin.scheduled}`;
+  var temp = document.createElement("div");
+  temp.innerText = Azqs.vc.describeDate(checkin.scheduled);
   card.appendChild(temp);
 
-  temp = document.createElement("span");
-  temp.innerText = `happened at ${checkin.checkin}`;
-  card.appendChild(temp);
+  if (checkin.checkin) {
+    temp = document.createElement("div");
+    temp.innerText = `happened at ${Azqs.vc.describeTime(checkin.checkin)}`;
+    card.appendChild(temp);
+  }
 
-  temp = document.createElement("span");
+  temp = document.createElement("div");
   temp.innerText = `${checkin.dose} ${checkin.med}`;
   card.appendChild(temp);
 
   return card;
+};
+
+Azqs.vc.dayNamesLong = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+Azqs.vc.dayNamesShort = Azqs.vc.dayNamesLong.map(n => n.substring(0, 3));
+Azqs.vc.monthNamesLong = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+Azqs.vc.monthNamesShort = Azqs.vc.monthNamesLong.map(n => n.substring(0, 3));
+
+Azqs.vc.describeTime = function(date) {
+  return date.getHours().toString().padStart(2, "0") +
+    ":" +
+    date.getMinutes().toString().padStart(2, "0");
+}
+
+Azqs.vc.describeDate = function(date) {
+  var datePiece = Azqs.vc.monthNamesShort[date.getMonth()] +
+    " " +
+    date.getDate() +
+    " - " +
+    Azqs.vc.dayNamesShort[date.getDay()];
+  var timePiece = Azqs.vc.describeTime(date);
+  return datePiece + " - " + timePiece;
 }

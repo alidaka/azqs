@@ -10,6 +10,11 @@ body {
   height: 100vh;
 }
 
+div {
+  display: inherit;
+  flex-direction: inherit;
+}
+
 #content {
   width: 100%;
 }
@@ -28,6 +33,8 @@ body {
 }
 
 .card {
+  flex-direction: row;
+  justify-content: space-between;
 }
 
 .checkin-missed {
