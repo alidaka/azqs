@@ -15,6 +15,10 @@ div {
   flex-direction: inherit;
 }
 
+button {
+  background-color: rgba(32, 164, 243, .5);
+}
+
 #content {
   width: 100%;
 }
@@ -38,13 +42,13 @@ div {
 }
 
 .checkin-missed {
-  background-color: orange;
+  background-color: rgba(218, 98, 125, .5);
 }
 
 .checkin-occurred {
-  background-color: blue;
+  background-color: rgba(55, 74, 103, .5);
 }
 
 .checkin-pending {
-  background-color: grey;
+  background-color: rgba(218, 210, 188, .5);
 }
