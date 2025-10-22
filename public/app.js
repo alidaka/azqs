@@ -126,7 +126,6 @@ Azqs.vc.checkinToCard = function(checkin) {
     card.classList.add("checkin-missed");
   }
 
-  // TODO: pull in a date library
   var temp = document.createElement("div");
   temp.innerText = Azqs.vc.describeDate(checkin.scheduled);
   card.appendChild(temp);
