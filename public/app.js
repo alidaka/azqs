@@ -34,32 +34,13 @@ Azqs.vc = function(controls, outputNode) {
   _ = controls.querySelector("#show-checkins").addEventListener("click", this.showCheckins.bind(this));
 
   // TODO: sample data
-  this.doseCheckins = [{
-    scheduled: new Date(2025, 9, 13, 7, 45),
-    med: "MPH",
-    dose: "5mg",
-    checkin: new Date(2025, 9, 13, 7, 38),
-  }, {
-    scheduled: new Date(2025, 9, 14, 7, 45),
-    med: "MPH",
-    dose: "5mg",
-    checkin: new Date(2025, 9, 14, 8),
-  }, {
-    scheduled: new Date(2025, 9, 15, 7, 45),
-    med: "MPH",
-    dose: "5mg",
-    checkin: null,
-  }, {
-    scheduled: new Date(2025, 9, 15, 7, 45),
-    med: "MPH",
-    dose: "5mg",
-    checkin: null,
-  }, {
-    scheduled: new Date(2026, 9, 16, 7, 45),
-    med: "MPH",
-    dose: "5mg",
-    checkin: null,
-  }];
+  this.doseCheckins = [
+    new _Checkin(new Date(2025, 9, 13, 7, 45), "MPH", "5mg", new Date(2025, 9, 13, 7, 38)),
+    new _Checkin(new Date(2025, 9, 14, 7, 45), "MPH", "5mg", new Date(2025, 9, 14, 8)),
+    new _Checkin(new Date(2025, 9, 15, 7, 45), "MPH", "5mg", null),
+    new _Checkin(new Date(2025, 9, 15, 7, 45), "MPH", "5mg", null),
+    new _Checkin(new Date(2026, 9, 16, 7, 45), "MPH", "5mg", null)
+  ];
 
 };
 
