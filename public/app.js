@@ -83,7 +83,7 @@ Azqs.vc.prototype.showCheckins = function(event) {
 
   // create content
   var content = document.createElement("div");
-  var cards = this.doseCheckins.map(Azqs.vc.checkinToCard);
+  var cards = this.doseCheckins.map(checkinToCard);
   cards.forEach(function(card) {
     content.appendChild(card);
   });
@@ -93,7 +93,7 @@ Azqs.vc.prototype.showCheckins = function(event) {
   return false;
 };
 
-Azqs.vc.checkinToCard = function(checkin) {
+checkinToCard = function(checkin) {
   var now = new Date();
 
   var card = document.createElement("div");
@@ -108,12 +108,12 @@ Azqs.vc.checkinToCard = function(checkin) {
   }
 
   var temp = document.createElement("div");
-  temp.innerText = Azqs.vc.describeDate(checkin.scheduled);
+  temp.innerText = describeDate(checkin.scheduled);
   card.appendChild(temp);
 
   if (checkin.checkin) {
     temp = document.createElement("div");
-    temp.innerText = `happened at ${Azqs.vc.describeTime(checkin.checkin)}`;
+    temp.innerText = `happened at ${describeTime(checkin.checkin)}`;
     card.appendChild(temp);
   }
 
@@ -124,23 +124,23 @@ Azqs.vc.checkinToCard = function(checkin) {
   return card;
 };
 
-Azqs.vc.dayNamesLong = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-Azqs.vc.dayNamesShort = Azqs.vc.dayNamesLong.map(n => n.substring(0, 3));
-Azqs.vc.monthNamesLong = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-Azqs.vc.monthNamesShort = Azqs.vc.monthNamesLong.map(n => n.substring(0, 3));
+const dayNamesLong = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+const dayNamesShort = dayNamesLong.map(n => n.substring(0, 3));
+const monthNamesLong = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+const monthNamesShort = monthNamesLong.map(n => n.substring(0, 3));
 
-Azqs.vc.describeTime = function(date) {
+describeTime = function(date) {
   return date.getHours().toString().padStart(2, "0") +
     ":" +
     date.getMinutes().toString().padStart(2, "0");
 }
 
-Azqs.vc.describeDate = function(date) {
-  var datePiece = Azqs.vc.monthNamesShort[date.getMonth()] +
+describeDate = function(date) {
+  var datePiece = monthNamesShort[date.getMonth()] +
     " " +
     date.getDate() +
     " - " +
-    Azqs.vc.dayNamesShort[date.getDay()];
-  var timePiece = Azqs.vc.describeTime(date);
+    dayNamesShort[date.getDay()];
+  var timePiece = describeTime(date);
   return datePiece + " - " + timePiece;
 }
