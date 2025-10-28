@@ -1,7 +1,10 @@
-function Med() {
+function Med(name, dose, unit) {
 }
 
-function Schedule() {
+function Schedule(hour, minute, days) {
+  this.hour = hour;
+  this.minute = minute;
+  this.days = days;
 }
 
 function Checkin() {
